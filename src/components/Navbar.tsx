@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLinks } from '../constants/index.ts';
+import { navLinks } from '../constants/index.ts';
 
 
 const Navbar: React.FC = () => {
@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
                 <img src="/images/logo.svg" alt="Apple logo" />
                 <p className='font-bold'>Sarthak's Portfolio</p>
                 <ul>
-                    {NavLinks.map(({ id, name }) => (
+                    {navLinks.map(({ id, name }) => (
                         // 3. Added a return statement (common JS/TS mistake)
                         <li key={id}>
                             <p>{name}</p>
