@@ -1,9 +1,11 @@
-import Navbar from "./components/Navbar"
+import { Navbar, Welcome } from "./components/index.ts"
 
-const App = () => {
+
+const App: React.FC = () => {
   return (
     <main>
-      <Navbar/>
+      <Navbar />
+      <Welcome />
     </main>
   )
 }
