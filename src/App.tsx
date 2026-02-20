@@ -1,4 +1,5 @@
-import { Navbar, Welcome } from "./components/index.ts"
+
+import { Navbar, Welcome ,Dock} from "./components/index.ts"
 
 
 const App: React.FC = () => {
@@ -6,6 +7,7 @@ const App: React.FC = () => {
     <main>
       <Navbar />
       <Welcome />
+      <Dock />
     </main>
   )
 }
