@@ -20,13 +20,16 @@ const Dock: React.FC = () => {
                 const { left: iconLeft, width } = icon.getBoundingClientRect();
                 const center = (iconLeft - dockLeft) + width / 2;
                 const distance = Math.abs(mouseX - center);
-                const intensity = Math.exp(-(distance ** 2.5) / 2000);
+                
+                // Using 2000 for a smoother spread across the dock
+                const intensity = Math.exp(-(distance ** 2) / 2000);
 
                 gsap.to(icon, {
-                    scale: 1 + 0.25 * intensity,
-                    y: -15 * intensity,
+                    scale: 1 + 0.35 * intensity,
+                    y: -18 * intensity,
                     duration: 0.2,
-                    ease: "power1.out",
+                    ease: "power2.out", // Smoother than power1
+                    overwrite: "auto"
                 });
             });
         };
@@ -34,12 +37,18 @@ const Dock: React.FC = () => {
         const handleMouseEnter = (e: Event) => {
             const target = e.currentTarget as HTMLElement;
 
-            // Hover bounce
-            gsap.to(target, {
-                y: 0,
-                duration: 0.3,
-                ease: "power1.out"
-            });
+            // Smoother Hover Pop using back.out for the "springy" feel
+            gsap.fromTo(target, 
+                { y: 0 }, 
+                { 
+                    y: -25, 
+                    duration: 0.25, 
+                    yoyo: true, 
+                    repeat: 1, 
+                    ease: "back.out(1.7)", // Creates the elastic overshoot
+                    overwrite: false // Allows the jump to finish alongside the wave
+                }
+            );
         };
 
         const handleMouseMove = (e: MouseEvent) => {
@@ -51,8 +60,8 @@ const Dock: React.FC = () => {
             gsap.to(icons, {
                 scale: 1,
                 y: 0,
-                duration: 0.3,
-                ease: "power1.out"
+                duration: 0.4,
+                ease: "elastic.out(1, 0.8)" // Smooth settle-down effect
             });
         };
 
@@ -82,7 +91,7 @@ const Dock: React.FC = () => {
                     <div key={id} className='relative flex justify-center'>
                         <button
                             type='button'
-                            className='dock-icon outline-none'
+                            className='dock-icon outline-none transition-none' // Transition none is vital
                             aria-label={name}
                             data-tooltip-id='dock-tooltip'
                             data-tooltip-content={name}
