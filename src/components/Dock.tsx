@@ -3,8 +3,10 @@ import { dockApps } from '../constants';
 import { Tooltip } from 'react-tooltip'
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useWindowStore } from '../store/window';
 
 const Dock: React.FC = () => {
+    const { openWindow, closeWindow, windows } = useWindowStore();
     const dockRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -20,7 +22,7 @@ const Dock: React.FC = () => {
                 const { left: iconLeft, width } = icon.getBoundingClientRect();
                 const center = (iconLeft - dockLeft) + width / 2;
                 const distance = Math.abs(mouseX - center);
-                
+
                 // Using 2000 for a smoother spread across the dock
                 const intensity = Math.exp(-(distance ** 2) / 2000);
 
@@ -38,13 +40,13 @@ const Dock: React.FC = () => {
             const target = e.currentTarget as HTMLElement;
 
             // Smoother Hover Pop using back.out for the "springy" feel
-            gsap.fromTo(target, 
-                { y: 0 }, 
-                { 
-                    y: -25, 
-                    duration: 0.25, 
-                    yoyo: true, 
-                    repeat: 1, 
+            gsap.fromTo(target,
+                { y: 0 },
+                {
+                    y: -25,
+                    duration: 0.25,
+                    yoyo: true,
+                    repeat: 1,
                     ease: "back.out(1.7)", // Creates the elastic overshoot
                     overwrite: false // Allows the jump to finish alongside the wave
                 }
@@ -81,6 +83,20 @@ const Dock: React.FC = () => {
         };
     }, { scope: dockRef });
 
+    const toggleApp = (app: { id: string; canOpen: boolean }) => {
+        if (!app.canOpen) return;
+
+        const win = windows[app.id];
+
+        if (win?.isOpen) {
+            closeWindow(app.id);
+        } else {
+            openWindow(app.id);
+        }
+
+        console.log(windows);
+    };
+
     return (
         <section id='dock' className="fixed bottom-2 w-full flex justify-center z-50">
             <div
@@ -96,6 +112,7 @@ const Dock: React.FC = () => {
                             data-tooltip-id='dock-tooltip'
                             data-tooltip-content={name}
                             disabled={!canOpen}
+                            onClick={() => toggleApp({ id, canOpen })}
                         >
                             <img
                                 src={`/images/${icon}`}
