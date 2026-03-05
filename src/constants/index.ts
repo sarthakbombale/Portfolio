@@ -104,12 +104,14 @@ export const blogPosts: BlogPost[] = [
 ];
 
 export const techStack: TechStackItem[] = [
-  { category: "Frontend", items: ["React.js", "Next.js", "TypeScript"] },
-  { category: "Mobile", items: ["React Native", "Expo"] },
-  { category: "Styling", items: ["Tailwind CSS", "Sass", "CSS"] },
-  { category: "Backend", items: ["Node.js", "Express", "NestJS", "Hono"] },
-  { category: "Database", items: ["MongoDB", "PostgreSQL"] },
-  { category: "Dev Tools", items: ["Git", "GitHub", "Docker"] },
+  { category: "Frontend", items: ["React.js", "Next.js", "HTML", "CSS"] },
+  { category: "Styling", items: ["Tailwind CSS", "BootStrap", "Sass", "CSS"] },
+  { category: "Backend", items: ["Node.js", "Express", "REST APIs", "FastApi"] },
+  { category: "Database", items: ["MongoDB", "PostgreSQL", "MySql"] },
+  { category: "Dev Tools", items: ["Git", "GitHub", "Docker", "CI/CD", "Postman"] },
+  { category: "State mangagement", items: ["Redux", "Zustand"] },
+  { category: "Programming Languages", items: ["TypeScript", "JavaScript", "Python"] }
+
 ];
 
 export const socials: SocialLink[] = [

@@ -1,8 +1,8 @@
 import { Navbar, Welcome, Dock } from "./components/index";
 import { Terminal } from "./windows";
 import { gsap } from "gsap";
-import { Draggable } from "gsap/draggable";
-
+import { Draggable } from "gsap/draggable"
+gsap.registerPlugin(Draggable)
 
 
 gsap.registerPlugin(Draggable);
@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <Navbar />
       <Welcome />
       <Dock />
-      <Terminal
+      <Terminal/>
     </main>
   );
 };

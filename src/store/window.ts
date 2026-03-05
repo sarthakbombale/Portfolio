@@ -6,7 +6,7 @@ import { INITIAL_Z_INDEX, WINDOW_CONFIG } from "../constants";
 interface WindowState {
   isOpen: boolean;
   zIndex: number;
-  data: any;
+  data: unknown;
   // add other properties from your WINDOW_CONFIG if necessary (e.g., title, icon)
 }
 
@@ -14,7 +14,7 @@ interface WindowState {
 interface WindowStore {
   windows: Record<string, WindowState>;
   nextZIndex: number;
-  openWindow: (windowKey: string, data?: any) => void;
+  openWindow: (windowKey: string, data?: unknown) => void;
   closeWindow: (windowKey: string) => void;
   focusWindow: (windowKey: string) => void;
 }
