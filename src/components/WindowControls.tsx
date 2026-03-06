@@ -2,16 +2,23 @@ import React from 'react';
 import { useWindowStore } from "../store/window";
 
 interface WindowControlsProps {
-  target: string;
+  target?: string; // Change to optional with '?'
 }
 
-const WindowControls: React.FC<WindowControlsProps> = ({ target }) => {
+// Add = {} to ensure props is never undefined
+const WindowControls: React.FC<WindowControlsProps> = ({ target = "" }) => {
   const { closeWindow } = useWindowStore();
+
+  const handleAction = () => {
+    if (target) {
+      closeWindow(target);
+    }
+  };
 
   return (
     <div id="window-controls">
-      <div className="close" onClick={() => closeWindow(target)} />
-      <div className="minimize" onClick={() => closeWindow(target)} />
+      <div className="close" onClick={handleAction} />
+      <div className="minimize" onClick={handleAction} />
       <div className="maximize" />
     </div>
   );
