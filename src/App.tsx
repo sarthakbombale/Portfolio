@@ -1,5 +1,5 @@
 import { Navbar, Welcome, Dock } from "./components";
-import { Terminal, Safari, Resume, Finder } from "./windows";
+import { Terminal, Safari, Resume, Finder, Text } from "./windows";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/dist/Draggable"
 gsap.registerPlugin(Draggable)
@@ -17,6 +17,7 @@ const App: React.FC = () => {
       <Safari />
       <Resume />
       <Finder />
+      <Text />
     </main>
   );
 };

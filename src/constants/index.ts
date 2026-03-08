@@ -115,10 +115,9 @@ export const techStack: TechStackItem[] = [
 ];
 
 export const socials: SocialLink[] = [
-  { id: 1, text: "Github", icon: "/icons/github.svg", bg: "#f4656b", link: "https://github.com/JavaScript-Mastery-Pro" },
-  { id: 2, text: "Platform", icon: "/icons/atom.svg", bg: "#4bcb63", link: "https://jsmastery.com/" },
-  { id: 3, text: "Twitter/X", icon: "/icons/twitter.svg", bg: "#ff866b", link: "https://x.com/jsmasterypro" },
-  { id: 4, text: "LinkedIn", icon: "/icons/linkedin.svg", bg: "#05b6f6", link: "https://www.linkedin.com/company/javascriptmastery/posts/?feedView=all" },
+  { id: 1, text: "Github", icon: "/icons/github.svg", bg: "#f4656b", link: "https://github.com/sarthakbombale" },
+  { id: 2, text: "Twitter/X", icon: "/icons/twitter.svg", bg: "#ff866b", link: "https://x.com/SarthakDev_" },
+  { id: 3, text: "LinkedIn", icon: "/icons/linkedin.svg", bg: "#05b6f6", link: "https://www.linkedin.com/in/sarthak-bombale-387705387/" },
 ];
 
 export const photosLinks = [
@@ -146,7 +145,7 @@ const WORK_LOCATION: FileSystemItem = {
   children: [
     {
       id: 5,
-      name: "Nike Ecommerce Website Application",
+      name: "Chatzy Real-time Chat Application",
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-10 left-5",
@@ -154,21 +153,37 @@ const WORK_LOCATION: FileSystemItem = {
       children: [
         {
           id: 1,
-          name: "Nike Project.txt",
+          name: "Chatzy Project.txt",
           icon: "/images/txt.png",
           kind: "file",
           fileType: "txt",
           position: "top-5 left-10",
-          description: ["...content here"],
+          description: [`Chatzy | Full-Stack Real-Time Communication Platform
+Developed a high-performance messaging application focused on low-latency data exchange and persistent user sessions. By leveraging Socket.io, I reduced message delivery lag to near-zero, while ensuring a reliable history through a structured MongoDB schema.
+
+Key Tech: MongoDB, Express.js, React, Node.js, Socket.io.
+
+Highlight: Engineered a custom "Online Presence" system to track user activity in real-time.
+
+DevOps: Managed the full lifecycle from local development to cloud deployment on Sevalla, utilizing automated CI/CD pipelines for seamless code integration.`],
         },
         {
           id: 2,
-          name: "nike.com",
+          name: "Doctor-Appointment-System",
           icon: "/images/safari.png",
           kind: "file",
           fileType: "url",
-          href: "https://youtu.be/fZdTYswuZjU?si=Awjl-pIst9e09_UU",
+          href: "https://github.com/sarthakbombale/Doctor-Appointment-System",
           position: "top-10 right-20",
+          description: [`Doctor Appointment System | Relational Full-Stack Platform
+
+Engineered a comprehensive healthcare scheduling solution featuring distinct modules for Patients and Healthcare Providers. By implementing Sequelize ORM with MySQL, I ensured strict data integrity for appointment logs and user profiles, enabling a reliable booking experience.
+
+Key Tech: React.js, Node.js, Express.js, MySQL, Sequelize.
+
+Core Logic: Developed a dynamic availability management system that prevents double-booking and handles real-time slot updates.
+
+Data Architecture: Designed a relational schema to manage complex many-to-one relationships between patients, doctors, and time slots.`]
         },
       ],
     },

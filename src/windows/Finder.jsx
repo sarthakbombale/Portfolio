@@ -4,68 +4,81 @@ import clsx from "clsx";
 import { Search } from "lucide-react";
 import WindowWrapper from "../hoc/WindowWrapper";
 import useLocationStore from "../store/location";
+import { useWindowStore } from "../store/window"; // FIX: Import the store where openWindow lives
 import { locations } from "../constants";
 
 const Finder = () => {
+  // FIX: Pull openWindow from useWindowStore
+  const { openWindow } = useWindowStore(); 
   const { activeLocation, setActiveLocation } = useLocationStore();
 
-  const renderList = (items) => {
+  const openItem = (item) => {
+    if (item.fileType === 'pdf') return openWindow("resume");
+    if (item.kind === "folder") return setActiveLocation(item);
+    
+    if (['fig', 'url'].includes(item.fileType) && item.href) {
+      return window.open(item.href, "_blank");
+    }
+
+    if (item.fileType === 'txt') {
+      openWindow("txtfile", item); 
+    }
+  };
+
+  const renderList = (name, items) => {
     if (!items || !Array.isArray(items)) return null;
 
-    return items.map((item) => (
-      <li 
-        key={item.id} 
-        onClick={() => setActiveLocation(item)}
-        className={clsx(
-            "flex items-center gap-2 p-1 cursor-pointer rounded",
-            item.id === activeLocation?.id ? "active bg-blue-100" : "not-active"
-        )} 
-      >
-        <img src={item.icon} className="w-4 h-4 object-contain" alt={item.name} />
-        <p className="text-sm font-medium truncate">{item.name}</p>
-      </li>
-    ));
+    return (
+      <div className="mb-4">
+        <h3>{name}</h3>
+        <ul>
+          {items.map((item) => (
+            <li
+              key={item.id}
+              onClick={() => setActiveLocation(item)}
+              className={clsx(
+                "flex items-center gap-2 p-1 cursor-pointer rounded",
+                item.id === activeLocation?.id ? "active bg-blue-100" : "not-active"
+              )}
+            >
+              <img src={item.icon} className="w-4 h-4 object-contain" alt={item.name} />
+              <p className="text-sm font-medium truncate">{item.name}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   };
 
   return (
     <>
-      <div id="window-header" className="flex items-center justify-between p-2">
+      <div id="window-header">
         <WindowControls target="finder" />
         <Search className="icon w-4 h-4" />
       </div>
 
-      <div className="bg-white flex h-full border-t">
-        <div className="sidebar w-48 border-r p-4 overflow-y-auto">
-          <div className="mb-4">
-            <h3 className="text-xs font-bold text-gray-500 uppercase mb-2">Favourite</h3>
-            <ul>
-              {locations ? renderList(Object.values(locations)) : null}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xs font-bold text-gray-500 uppercase mb-2">Work</h3>
-            <ul>
-              {renderList(locations?.work?.children)}
-            </ul>
-          </div>
+      <div className="bg-white flex h-full">
+        <div className="sidebar">
+          {renderList("Favourite", Object.values(locations || {}))}
+          {renderList("Work", locations?.work?.children)}
         </div>
 
-        <div className="flex-1 p-4">
-            {activeLocation ? (
-                <div>
-                    <h1 className="text-xl font-bold">{activeLocation.name}</h1>
-                    <p className="text-gray-600">Type: {activeLocation.kind}</p>
-                </div>
-            ) : (
-                <p className="text-gray-400 text-sm">Select a location to view details</p>
-            )}
-        </div>
+        {/* Note: 'relative' and 'absolute' are required for item.position to work */}
+        <ul className="content relative flex-1">
+          {activeLocation?.children?.map((item) => (
+            <li 
+              key={item.id} 
+              className={clsx("absolute", item.position)} 
+              onClick={() => openItem(item)}
+            >
+              <img src={item.icon} alt={item.name} />
+              <p>{item.name}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
 };
 
 export default WindowWrapper(Finder, "finder");
-
-// 2:29:36
