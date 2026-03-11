@@ -205,7 +205,13 @@ const ABOUT_LOCATION: FileSystemItem = {
       fileType: "txt",
       position: "top-60 left-5",
       subtitle: "Meet the Developer Behind the Code",
-      description: ["Hey! I’m Adrian..."],
+      description: [
+  "I am a Full Stack Developer with a strong foundation in modern web technologies and a focus on building scalable, user-centric applications.",
+  "I recently completed a 6-month internship at Scalefull Technologies as a Full Stack Developer, where I gained hands-on experience delivering professional-grade software solutions.",
+  "My core technical stack includes React, Next.js, and TypeScript, backed by solid expertise in JavaScript, Node.js, and Python.",
+  "I am proficient in managing both NoSQL and SQL databases, specifically MongoDB and MySQL, to ensure robust data architecture.",
+  "I thrive on solving complex technical challenges and am always eager to learn and implement the latest industry standards."
+],
     },
   ],
 };
