@@ -236,7 +236,7 @@ const WORK_LOCATION: FileSystemItem = {
   children: [
     {
       id: 5,
-      name: "Chatzy Real-time Chat Application",
+      name: "Work",
       icon: "/images/folder.png",
       kind: "folder",
       position: "top-10 left-5",
@@ -247,8 +247,7 @@ const WORK_LOCATION: FileSystemItem = {
           name: "Chatzy Project.txt",
           icon: "/images/txt.png",
           kind: "file",
-          fileType: "txt",
-          position: "top-5 left-10",
+          fileType: "txt", position: "top-10 left-14",
           description: [`Chatzy | Full-Stack Real-Time Communication Platform
 Developed a high-performance messaging application focused on low-latency data exchange and persistent user sessions. By leveraging Socket.io, I reduced message delivery lag to near-zero, while ensuring a reliable history through a structured MongoDB schema.
 
@@ -265,7 +264,7 @@ DevOps: Managed the full lifecycle from local development to cloud deployment on
           kind: "file",
           fileType: "url",
           href: "https://github.com/sarthakbombale/Doctor-Appointment-System",
-          position: "top-10 right-20",
+          position: "top-10 right-14",
           description: [`Doctor Appointment System | Relational Full-Stack Platform
 
 Engineered a comprehensive healthcare scheduling solution featuring distinct modules for Patients and Healthcare Providers. By implementing Sequelize ORM with MySQL, I ensured strict data integrity for appointment logs and user profiles, enabling a reliable booking experience.
@@ -275,6 +274,26 @@ Key Tech: React.js, Node.js, Express.js, MySQL, Sequelize.
 Core Logic: Developed a dynamic availability management system that prevents double-booking and handles real-time slot updates.
 
 Data Architecture: Designed a relational schema to manage complex many-to-one relationships between patients, doctors, and time slots.`]
+        },
+        {
+          id: 3,
+          name: "Chatzy Live Demo",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://chatzy-1o4b.onrender.com/",
+          position: "top-44 left-1/3 -translate-x-1/2",
+          description: ["Live deployment for the Chatzy real-time chat application."],
+        },
+        {
+          id: 4,
+          name: "Doctor App Live Demo",
+          icon: "/images/safari.png",
+          kind: "file",
+          fileType: "url",
+          href: "https://doctor-app-system.netlify.app/",
+          position: "top-44 right-1/3 translate-x-1/2",
+          description: ["Live deployment for the doctor appointment system."],
         },
       ],
     },
@@ -294,15 +313,15 @@ const ABOUT_LOCATION: FileSystemItem = {
       icon: "/images/txt.png",
       kind: "file",
       fileType: "txt",
-      position: "top-60 left-5",
+      position: "top-56 left-1/2 -translate-x-1/2",
       subtitle: "Meet the Developer Behind the Code",
       description: [
-  "I am a Full Stack Developer with a strong foundation in modern web technologies and a focus on building scalable, user-centric applications.",
-  "I recently completed a 6-month internship at Scalefull Technologies as a Full Stack Developer, where I gained hands-on experience delivering professional-grade software solutions.",
-  "My core technical stack includes React, Next.js, and TypeScript, backed by solid expertise in JavaScript, Node.js, and Python.",
-  "I am proficient in managing both NoSQL and SQL databases, specifically MongoDB and MySQL, to ensure robust data architecture.",
-  "I thrive on solving complex technical challenges and am always eager to learn and implement the latest industry standards."
-],
+        "Fullstack Engineer obsessed with building high-throughput systems, shipping fast, and solving hard architectural problems from 0 to 1.",
+        "Currently engineering microservices and core infrastructure at Econsign Soft, after building end-to-end MERN apps at Scalefull Technologies LLP.",
+        "I work across the entire stack—architecting low-latency backends in Node.js, Express, and Django REST Framework, paired with snappy React and Next.js frontends.",
+        "From ACID-compliant schemas in MySQL and PostgreSQL to Redis caching, RBAC security, and AWS deployments, I own the entire lifecycle.",
+        "Focused on clean system design, fast execution, and writing software that actually scales—no fluff, just shipping.",
+      ],
     },
   ],
 };
@@ -321,7 +340,7 @@ const RESUME_LOCATION: FileSystemItem = {
 const TRASH_LOCATION: FileSystemItem = {
   id: 4,
   type: "trash",
-  name: "Trash",
+  name: "Education",
   icon: "/icons/trash.svg",
   kind: "folder",
   children: [
