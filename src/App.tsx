@@ -1,7 +1,8 @@
 import { Navbar, Welcome, Dock, Home } from "./components";
-import { Terminal, Safari, Resume, Finder, Text, Contact, Photos } from "./windows";
+import { Terminal, Safari, Resume, Finder, Text, Contact, Photos, Trash } from "./windows";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/dist/Draggable"
+
 gsap.registerPlugin(Draggable)
 
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <Contact />
       <Home/>
       <Photos/>
+      <Trash />
     </main>
   );
 };

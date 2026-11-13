@@ -38,6 +38,34 @@ export interface SocialLink {
   link: string;
 }
 
+export interface ExperienceEntry {
+  id: number;
+  company: string;
+  logo: string;
+  role: string;
+  period: string;
+  location: string;
+  highlights: string[];
+}
+
+export interface ProjectEntry {
+  id: number;
+  name: string;
+  stack: string;
+  type: string;
+  liveUrl?: string;
+  highlights: string[];
+}
+
+export interface EducationEntry {
+  id: number;
+  course: string;
+  institution: string;
+  period: string;
+  location: string;
+  status?: string;
+}
+
 // 2. Define a recursive Interface for the File System (Folders and Files)
 export interface FileSystemItem {
   id: number;
@@ -76,42 +104,105 @@ export const dockApps: DockApp[] = [
   { id: "photos", name: "Gallery", icon: "photos.png", canOpen: true },
   { id: "contact", name: "Contact", icon: "contact.png", canOpen: true },
   { id: "terminal", name: "Skills", icon: "terminal.png", canOpen: true },
-  { id: "trash", name: "Archive", icon: "trash.png", canOpen: false },
+  { id: "trash", name: "Education", icon: "trash.png", canOpen: true },
 ];
 
-export const blogPosts: BlogPost[] = [
+export const experienceEntries: ExperienceEntry[] = [
   {
     id: 1,
-    date: "Sep 2, 2025",
-    title: "TypeScript Explained: What It Is, Why It Matters, and How to Master It",
-    image: "/images/blog1.png",
-    link: "https://jsmastery.com/blog/typescript-explained-what-it-is-why-it-matters-and-how-to-master-it",
+    company: "Econsign Soft Pvt. Ltd.",
+    logo: "/images/econsignlogo.png",
+    role: "Fullstack Developer",
+    period: "Jun 2026 – Present",
+    location: "Pune, India",
+    highlights: [
+      "Engineered high-throughput fullstack applications and microservices using Node.js, Express.js, React.js, Sequelize, and MySQL.",
+      "Optimized backend latency by integrating Redis caching for frequent queries and configured AWS S3 bucket pipelines for secure asset management.",
+      "Designed complex relational schemas and executed Sequelize transactions to enforce ACID compliance across multi-table updates.",
+      "Strengthened platform security by implementing JWT authentication, Role-Based Access Control (RBAC), input validation, and payload encryption routines.",
+      "Developed dynamic, responsive user interfaces in React/Next.js, integrating robust state management and seamless REST API endpoints.",
+    ],
   },
   {
     id: 2,
-    date: "Aug 28, 2025",
-    title: "The Ultimate Guide to Mastering Three.js for 3D Development",
-    image: "/images/blog2.png",
-    link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-three-js-for-3d-development",
-  },
-  {
-    id: 3,
-    date: "Aug 15, 2025",
-    title: "The Ultimate Guide to Mastering GSAP Animations",
-    image: "/images/blog3.png",
-    link: "https://jsmastery.com/blog/the-ultimate-guide-to-mastering-gsap-animations",
+    company: "Scalefull Technologies Pvt. Ltd.",
+    logo: "/images/scalefull_logo.jpeg",
+    role: "Web Development Intern / Fullstack Developer",
+    period: "Jun 2025 – Feb 2026",
+    location: "Wakad, Pune",
+    highlights: [
+      "Built end-to-end MERN web features, delivering reusable React UI components integrated with Express/Node.js microservices.",
+      "Architected and maintained structured SQL and NoSQL databases utilizing Sequelize ORM and MongoDB.",
+      "Collaborated in Agile sprints, executing thorough Postman API testing, peer code reviews, and Git feature-branch deployments.",
+    ],
   },
 ];
 
-export const techStack: TechStackItem[] = [
-  { category: "Frontend", items: ["React.js", "Next.js", "HTML", "CSS"] },
-  { category: "Styling", items: ["Tailwind CSS", "BootStrap", "Sass", "CSS"] },
-  { category: "Backend", items: ["Node.js", "Express", "REST APIs", "FastApi"] },
-  { category: "Database", items: ["MongoDB", "PostgreSQL", "MySql"] },
-  { category: "Dev Tools", items: ["Git", "GitHub", "Docker", "CI/CD", "Postman"] },
-  { category: "State mangagement", items: ["Redux", "Zustand"] },
-  { category: "Programming Languages", items: ["TypeScript", "JavaScript", "Python"] }
+export const projectEntries: ProjectEntry[] = [
+  {
+    id: 1,
+    name: "Office Portal – Enterprise Management ERP",
+    stack: "Node.js, Express.js, React.js, Sequelize, MySQL",
+    type: "Live System",
+    highlights: [
+      "Architected end-to-end enterprise solution including Node.js/Express RESTful APIs and interactive React dashboard components.",
+      "Automated Lead Management and Lead-to-Customer conversion flows using atomic SQL transactions and validation pipelines.",
+      "Built an Inventory Module (GST/HSN tracking, real-time stock levels) and an Attendance Management system with approval workflows.",
+    ],
+  },
+  {
+    id: 2,
+    name: "Shubhra Ranjan AI (SRAI) – UPSC Learning Platform",
+    stack: "Node.js, Express.js, React.js, Sequelize, MySQL",
+    type: "Live Platform",
+    liveUrl: "https://ai.shubhraranjan.com/login",
+    highlights: [
+      "Developed scalable features for an AI-driven learning platform serving interactive MCQs, Flashcards, and PYQ analytics.",
+      "Designed lecture-level content filtering, multi-tier admin approval workflows, and secure, encrypted client-server API payloads.",
+    ],
+  },
+  {
+    id: 3,
+    name: "Institute for Humanities (IFH) Platform",
+    stack: "Django REST Framework, Next.js, Python, PostgreSQL",
+    type: "Live Site",
+    liveUrl: "https://instituteforhumanities.com/",
+    highlights: [
+      "Engineered Author Management modules via DRF ModelViewSet, custom serializers, and automated audit timestamps.",
+      "Configured profile image upload pipelines, soft-delete database handlers, OpenAPI/Swagger documentation, and Next.js frontend pages.",
+    ],
+  },
+];
 
+export const educationEntries: EducationEntry[] = [
+  {
+    id: 1,
+    course: "Master of Computer Applications (MCA) – Artificial Intelligence",
+    institution: "G H Raisoni College of Engineering and Management",
+    period: "Pursuing (2026)",
+    location: "Pune, India",
+    status: "Pursuing",
+  },
+  {
+    id: 2,
+    course: "BBA-CA (Bachelor of Business Administration in Computer Application)",
+    institution: "Savitribai Phule Pune University",
+    period: "Aug 2022 – May 2025",
+    location: "Pune, India",
+  },
+  {
+    id: 3,
+    course: "Higher Secondary Certificate (HSC) & Secondary School Certificate (SSC)",
+    institution: "Vidyadham Prashala Shikrapur",
+    period: "2020 – 2022",
+    location: "Maharashtra, India",
+  },
+];
+
+export const livePlatformLinks = [
+  { id: 1, label: "BizPortal Login", url: "https://bizportal.econsignsoft.com/login" },
+  { id: 2, label: "SRAI Login", url: "https://ai.shubhraranjan.com/login" },
+  { id: 3, label: "IFH Website", url: "https://instituteforhumanities.com/" },
 ];
 
 export const socials: SocialLink[] = [
@@ -264,4 +355,15 @@ export const WINDOW_CONFIG: Record<string, WindowState> = {
   terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
   imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
+  trash: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
+
+export const techStack: TechStackItem[] = [
+  { category: "Frontend", items: ["React.js", "Next.js", "HTML", "CSS"] },
+  { category: "Styling", items: ["Tailwind CSS", "BootStrap", "Sass", "CSS"] },
+  { category: "Backend", items: ["Node.js", "Express", "REST APIs", "FastApi"] },
+  { category: "Database", items: ["MongoDB", "PostgreSQL", "MySql"] },
+  { category: "Dev Tools", items: ["Git", "GitHub", "Docker", "CI/CD", "Postman"] },
+  { category: "State mangagement", items: ["Redux", "Zustand"] },
+  { category: "Programming Languages", items: ["TypeScript", "JavaScript", "Python"] },
+];

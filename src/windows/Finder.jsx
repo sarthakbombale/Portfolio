@@ -13,15 +13,21 @@ const Finder = () => {
   const { activeLocation, setActiveLocation } = useLocationStore();
 
   const openItem = (item) => {
-    if (item.fileType === 'pdf') return openWindow("resume");
-    if (item.kind === "folder") return setActiveLocation(item);
-    
+    if (item.type === 'trash') {
+      openWindow('trash', item);
+      setActiveLocation(item);
+      return;
+    }
+
+    if (item.fileType === 'pdf') return openWindow('resume');
+    if (item.kind === 'folder') return setActiveLocation(item);
+
     if (['fig', 'url'].includes(item.fileType) && item.href) {
-      return window.open(item.href, "_blank");
+      return window.open(item.href, '_blank');
     }
 
     if (item.fileType === 'txt') {
-      openWindow("txtfile", item); 
+      openWindow('txtfile', item);
     }
   };
 
@@ -32,19 +38,31 @@ const Finder = () => {
       <div className="mb-4">
         <h3>{name}</h3>
         <ul>
-          {items.map((item) => (
-            <li
-              key={item.id}
-              onClick={() => setActiveLocation(item)}
-              className={clsx(
-                "flex items-center gap-2 p-1 cursor-pointer rounded",
-                item.id === activeLocation?.id ? "active bg-blue-100" : "not-active"
-              )}
-            >
-              <img src={item.icon} className="w-4 h-4 object-contain" alt={item.name} />
-              <p className="text-sm font-medium truncate">{item.name}</p>
-            </li>
-          ))}
+          {items.map((item) => {
+            const handleSelect = () => {
+              if (item.type === 'trash') {
+                openWindow('trash', item);
+                setActiveLocation(item);
+                return;
+              }
+
+              setActiveLocation(item);
+            };
+
+            return (
+              <li
+                key={item.id}
+                onClick={handleSelect}
+                className={clsx(
+                  'flex items-center gap-2 p-1 cursor-pointer rounded',
+                  item.id === activeLocation?.id ? 'active bg-blue-100' : 'not-active'
+                )}
+              >
+                <img src={item.icon} className="w-4 h-4 object-contain" alt={item.name} />
+                <p className="text-sm font-medium truncate">{item.name}</p>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );
