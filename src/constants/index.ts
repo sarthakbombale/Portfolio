@@ -380,9 +380,9 @@ export const WINDOW_CONFIG: Record<string, WindowState> = {
 export const techStack: TechStackItem[] = [
   { category: "Frontend", items: ["React.js", "Next.js", "HTML", "CSS"] },
   { category: "Styling", items: ["Tailwind CSS", "BootStrap", "Sass", "CSS"] },
-  { category: "Backend", items: ["Node.js", "Express", "REST APIs", "FastApi"] },
+  { category: "Backend", items: ["Node.js", "Express", "REST APIs", "FastApi", "Django"] },
   { category: "Database", items: ["MongoDB", "PostgreSQL", "MySql"] },
-  { category: "Dev Tools", items: ["Git", "GitHub", "Docker", "CI/CD", "Postman"] },
+  { category: "Dev Tools", items: ["Git", "GitHub", "Gitlab", "Docker", "CI/CD", "Postman", "Swagger", "AWS (S3, EC2)",] },
   { category: "State mangagement", items: ["Redux", "Zustand"] },
-  { category: "Programming Languages", items: ["TypeScript", "JavaScript", "Python"] },
+  { category: "Programming Languages", items: ["TypeScript", "JavaScript", "Python", "Core Java"] },
 ];
