@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import WindowWrapper from '../hoc/WindowWrapper';
 import { WindowControls } from '#components';
 
+const personalImages = [
+  '/images/sarthak.jpg',
+  '/images/Sarthak.png'
+];
+
+const projectImages = [
+  '/images/project-1.png',
+  '/images/project-2.png',
+  '/images/project-3.png',
+  '/images/project-4.png'
+];
+
 const Photos = () => {
+  const [activeSection, setActiveSection] = useState('me');
+  const visibleImages = activeSection === 'projects' ? projectImages : personalImages;
+
   return (
     <>
       <div id="window-header">
@@ -10,38 +25,40 @@ const Photos = () => {
         <h2 className="flex-1 text-center font-bold text-sm">Photos</h2>
       </div>
 
-      <div className="flex h-125 bg-white">
-        {/* Sidebar - Matches your #photos .sidebar CSS */}
-        <div className="sidebar">
+      <div className="photos-body">
+        <aside className="sidebar">
           <h2>Library</h2>
           <ul>
-            <li>
-              <img src="/images/photos.png" alt="All Photos" className="w-4" />
-              <p>All Photos</p>
+            <li
+              className={activeSection === 'me' ? 'active' : ''}
+              onClick={() => setActiveSection('me')}
+            >
+              <p>Me</p>
             </li>
-            <li className="opacity-50">
-              <p>Favorites</p>
-            </li>
-            <li className="opacity-50">
-              <p>Recent</p>
+            <li
+              className={activeSection === 'projects' ? 'active' : 'muted'}
+              onClick={() => setActiveSection('projects')}
+            >
+              <p>Projects</p>
             </li>
           </ul>
-        </div>
+        </aside>
 
-        {/* Gallery - Matches your #photos .gallery CSS */}
-        <div className="gallery overflow-y-auto flex-1">
+        <div className={`gallery ${activeSection}`}>
           <ul>
-            {/* The CSS uses nth-child selectors for this specific grid layout */}
-            <li><img src="/images/project-1.png" alt="Gallery 1" /></li>
-            <li><img src="/images/project-2.png" alt="Gallery 2" /></li>
-            <li><img src="/images/project-3.png" alt="Gallery 3" /></li>
-            <li><img src="/images/project-4.png" alt="Gallery 4" /></li>
+            {visibleImages.map((img, index) => (
+              <li key={`${img}-${index}`} className="photo-card">
+                <img
+                  src={img}
+                  alt={`${activeSection === 'projects' ? 'Project' : 'Me'} photo ${index + 1}`}
+                />
+              </li>
+            ))}
           </ul>
         </div>
       </div>
     </>
   );
 };
-
 
 export default WindowWrapper(Photos, "photos");
