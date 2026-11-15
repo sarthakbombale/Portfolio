@@ -605,10 +605,15 @@ body {
     }
 
     #dock .dock-icon {
-      width: 48px;
-      height: 48px;
+      width: clamp(44px, 11vw, 48px);
+      height: clamp(44px, 11vw, 48px);
       flex: none;
       touch-action: manipulation;
+
+      img {
+        width: clamp(32px, 9.5vw, 40px);
+        height: clamp(32px, 9.5vw, 40px);
+      }
     }
 
     section[id="terminal"] > div:first-child {
@@ -628,15 +633,23 @@ body {
       min-height: 0;
     }
 
-    #safari .finder-sidebar {
-      width: 7rem;
+    #safari .finder-layout .finder-sidebar {
+      width: clamp(6rem, 26vw, 7rem);
+      flex: 0 0 clamp(6rem, 26vw, 7rem);
       padding: 8px;
     }
 
-    #safari .finder-content {
+    #safari .finder-layout .finder-content {
+      min-width: 0;
       padding: 12px;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch;
+    }
+
+    #safari .finder-layout .finder-content .experience-item .company-header img {
+      width: clamp(36px, 10vw, 44px);
+      height: clamp(36px, 10vw, 44px);
+      flex: none;
     }
 
     #safari .search {
