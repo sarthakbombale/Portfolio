@@ -43,15 +43,35 @@ const WindowWrapper = (Component, windowKey) => {
             const el = ref.current;
             if (!el) return;
 
-            // Create Draggable and store the instance
-            const [instance] = Draggable.create(el, { 
-                onPress: () => focusWindow(windowKey),
-                bounds: "body", // Optional: keeps window from leaving the screen
-                inertia: true,  // Optional: adds smooth sliding
-            });
+            const mobileQuery = window.matchMedia("(max-width: 768px)");
+            const createDraggable = () => {
+                const trigger = mobileQuery.matches
+                    ? el.querySelector("#window-header, .window-header") || el.firstElementChild || el
+                    : el;
+
+                const [instance] = Draggable.create(el, {
+                    trigger,
+                    onPress: () => focusWindow(windowKey),
+                    bounds: "body", // Optional: keeps window from leaving the screen
+                    inertia: true,  // Optional: adds smooth sliding
+                });
+
+                return instance;
+            };
+
+            let instance = createDraggable();
+            const handleBreakpointChange = () => {
+                instance.kill();
+                instance = createDraggable();
+            };
+
+            mobileQuery.addEventListener("change", handleBreakpointChange);
 
             // Cleanup: kill the draggable when component unmounts
-            return () => instance.kill();
+            return () => {
+                mobileQuery.removeEventListener("change", handleBreakpointChange);
+                instance.kill();
+            };
         }, []); 
 
         useLayoutEffect(() => {
